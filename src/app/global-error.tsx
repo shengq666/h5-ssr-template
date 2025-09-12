@@ -1,67 +1,25 @@
-// components/ErrorBoundary.tsx
 'use client'
 
-import React from 'react'
+// import * as Sentry from '@sentry/nextjs'
+import NextError from 'next/error'
+import { useEffect } from 'react'
 
-interface Props {
-  children: React.ReactNode
-  FallbackComponent: React.ComponentType<{
-    error: Error
-    resetErrorBoundary: () => void
-  }>
-  onError?: (error: Error, info: React.ErrorInfo) => void
-  onReset?: () => void
+export default function GlobalError(props: {
+  error: Error & { digest?: string }
+}) {
+  useEffect(() => {
+    // Sentry.captureException(props.error)
+  }, [props.error])
+
+  return (
+    <html lang="en">
+      <body>
+        {/* `NextError` is the default Next.js error page component. Its type
+        definition requires a `statusCode` prop. However, since the App Router
+        does not expose status codes for errors, we simply pass 0 to render a
+        generic error message. */}
+        <NextError statusCode={0} />
+      </body>
+    </html>
+  )
 }
-
-interface State {
-  error: Error | null
-}
-
-class ErrorBoundary extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props)
-    this.state = { error: null }
-  }
-
-  static getDerivedStateFromError(error: Error): State {
-    return { error }
-  }
-
-  componentDidCatch(error: Error, info: React.ErrorInfo) {
-    // 记录错误信息
-    console.error('Error caught by boundary:', error, info)
-
-    // 调用自定义错误处理
-    if (this.props.onError) {
-      this.props.onError(error, info)
-    }
-
-    // 可以在这里发送错误报告到监控服务
-    // reportErrorToService(error, info);
-  }
-
-  resetErrorBoundary = () => {
-    this.setState({ error: null })
-    if (this.props.onReset) {
-      this.props.onReset()
-    }
-  }
-
-  render() {
-    const { error } = this.state
-    const { children, FallbackComponent } = this.props
-
-    if (error) {
-      return (
-        <FallbackComponent
-          error={error}
-          resetErrorBoundary={this.resetErrorBoundary}
-        />
-      )
-    }
-
-    return children
-  }
-}
-
-export default ErrorBoundary

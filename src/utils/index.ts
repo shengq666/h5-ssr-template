@@ -94,7 +94,10 @@ export const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))
  * @returns 查询参数对象
  */
 export const getServerQuery = async (
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }> | { [key: string]: string | string[] | undefined } | undefined
+  searchParams:
+    | Promise<{ [key: string]: string | string[] | undefined }>
+    | { [key: string]: string | string[] | undefined }
+    | undefined
 ): Promise<Record<string, string>> => {
   // 确保 searchParams 已经 resolve
   const params = await searchParams
@@ -111,7 +114,7 @@ export const getServerQuery = async (
       if (value.length > 0) {
         query[key] = value[0]
       }
-    } 
+    }
     // 处理字符串值
     else if (typeof value === 'string') {
       query[key] = value
@@ -119,4 +122,27 @@ export const getServerQuery = async (
   }
 
   return query
+}
+
+export const getBaseUrl = () => {
+  if (process.env.NEXT_PUBLIC_APP_URL) {
+    return process.env.NEXT_PUBLIC_APP_URL
+  }
+
+  if (
+    process.env.VERCEL_ENV === 'production' &&
+    process.env.VERCEL_PROJECT_PRODUCTION_URL
+  ) {
+    return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+  }
+
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`
+  }
+
+  return 'http://localhost:3000'
+}
+
+export const isServer = () => {
+  return typeof window === 'undefined'
 }
