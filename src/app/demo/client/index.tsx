@@ -1,8 +1,9 @@
 'use client'
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './index.module.scss'
 import { Button } from 'antd-mobile'
 import { useRouter } from 'next/navigation'
+import { getQuery } from '@/utils'
 
 // 创建一个资源缓存
 const cache = new Map()
@@ -50,6 +51,11 @@ function fetchDataResource() {
 export default function Index() {
   const data = fetchDataResource()
   const router = useRouter()
+
+  const query = getQuery()
+  useEffect(() => {
+    console.log('query', query)
+  }, [query])
 
   return (
     <div className={styles.index}>
