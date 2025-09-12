@@ -6,7 +6,20 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "lint:fix": "eslint --fix .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.{json,md,scss,css}": [
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "antd-mobile": "^5.39.0",
@@ -24,6 +37,9 @@
     "eslint-config-next": "15.5.3",
     "postcss-px-to-viewport-8-plugin": "^1.2.5",
     "sass": "^1.92.1",
-    "typescript": "^5"
+    "typescript": "^5",
+    "prettier": "^3.6.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.6"
   }
 }

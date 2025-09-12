@@ -1,11 +1,11 @@
-import type { Metadata, Viewport } from 'next'
-import './globals.scss'
+import type { Metadata, Viewport } from 'next';
+import './globals.scss';
 
 export const metadata: Metadata = {
   title: 'H5 SSR Template',
   description: '一个基于 Next.js 15 的移动端应用',
   generator: 'Next.js',
-}
+};
 
 // 移动端视口设置至关重要
 export const viewport: Viewport = {
@@ -14,16 +14,16 @@ export const viewport: Viewport = {
   maximumScale: 1,
   userScalable: false,
   // 也可设置 theme-color 等
-}
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
     <html lang="en">
       <body>{children}</body>
     </html>
-  )
+  );
 }

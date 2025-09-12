@@ -37,4 +37,4 @@ module.exports = {
       // landscapeWidth: 568 // 横屏时的视口宽度
     },
   },
-}
+};

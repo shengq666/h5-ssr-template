@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# 在提交前运行 lint-staged，自动修复代码格式和规范问题
+npx lint-staged

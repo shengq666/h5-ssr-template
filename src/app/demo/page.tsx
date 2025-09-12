@@ -1,6 +1,6 @@
-import { Suspense } from 'react'
-import Client from './client'
-import DemoProvider from './demo-provider'
+import { Suspense } from 'react';
+import Client from './client';
+import DemoProvider from './demo-provider';
 
 export default async function Demo() {
   return (
@@ -12,5 +12,5 @@ export default async function Demo() {
         </DemoProvider>
       </Suspense>
     </>
-  )
+  );
 }

@@ -1,0 +1,9 @@
+{
+  // 推荐的 VS Code 扩展
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    // "bradlc.vscode-tailwindcss",
+    "ms-vscode.vscode-typescript-next",
+    "ms-vscode.vscode-eslint"
+  ]
+}

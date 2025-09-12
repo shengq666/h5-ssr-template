@@ -20,7 +20,9 @@
     ],
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    // 允许使用隐式 any 类型，放宽 TypeScript 检查
+    "noImplicitAny": false
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]

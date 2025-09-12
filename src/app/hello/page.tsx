@@ -1,10 +1,10 @@
-import { Suspense } from 'react'
-import { getServerQuery } from '@/utils'
-import { PageProps } from '@/types'
+import { Suspense } from 'react';
+import { getServerQuery } from '@/utils';
+import { PageProps } from '@/types';
 
 export default async function Demo({ searchParams }: PageProps) {
-  const query = await getServerQuery(searchParams)
-  console.log('query', query)
+  const query = await getServerQuery(searchParams);
+  console.log('query', query);
 
   return (
     <>
@@ -14,5 +14,5 @@ export default async function Demo({ searchParams }: PageProps) {
         <div>hello </div>
       </Suspense>
     </>
-  )
+  );
 }

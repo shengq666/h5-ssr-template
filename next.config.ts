@@ -1,4 +1,4 @@
-import type { NextConfig } from 'next'
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   /* config options here */
@@ -22,7 +22,7 @@ const nextConfig: NextConfig = {
         destination: '/demo',
         permanent: true, // true 或 false - 如果为 true 将使用 308 状态码，指示客户端/搜索引擎永久缓存此重定向；如果为 false 则使用 307 临时状态码且不会被缓存
       },
-    ]
+    ];
   },
   // 开发环境代理配置
   async rewrites() {
@@ -31,16 +31,16 @@ const nextConfig: NextConfig = {
         '开发环境代理配置',
         process.env.NODE_ENV,
         process.env.NEXT_PUBLIC_API_BASE_URL
-      )
+      );
       return [
         {
           source: '/api/:path*',
           destination: `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/:path*`,
         },
-      ]
+      ];
     }
-    return []
+    return [];
   },
-}
+};
 
-export default nextConfig
+export default nextConfig;

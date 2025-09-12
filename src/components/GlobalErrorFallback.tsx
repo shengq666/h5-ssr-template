@@ -1,9 +1,9 @@
 // components/errors/GlobalErrorFallback.tsx
-'use client'
+'use client';
 
 interface Props {
-  error: Error
-  resetErrorBoundary: () => void
+  error: Error;
+  resetErrorBoundary: () => void;
 }
 
 export default function GlobalErrorFallback({
@@ -21,5 +21,5 @@ export default function GlobalErrorFallback({
       <button onClick={resetErrorBoundary}>重试</button>
       <button onClick={() => window.location.assign('/')}>返回首页</button>
     </div>
-  )
+  );
 }

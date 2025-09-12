@@ -9,24 +9,24 @@ export const buildUrl = (
   query?: Record<string, string | number | boolean>
 ): string => {
   if (!query) {
-    return path
+    return path;
   }
 
   // 过滤掉 undefined 和 null 值
-  const filteredQuery: Record<string, string> = {}
-  Object.keys(query).forEach((key) => {
+  const filteredQuery: Record<string, string> = {};
+  Object.keys(query).forEach(key => {
     if (query[key] !== undefined && query[key] !== null) {
-      filteredQuery[key] = String(query[key])
+      filteredQuery[key] = String(query[key]);
     }
-  })
+  });
 
   if (Object.keys(filteredQuery).length === 0) {
-    return path
+    return path;
   }
 
-  const queryString = new URLSearchParams(filteredQuery).toString()
-  return `${path}?${queryString}`
-}
+  const queryString = new URLSearchParams(filteredQuery).toString();
+  return `${path}?${queryString}`;
+};
 
 /**
  * 获取当前路径的查询参数
@@ -34,18 +34,18 @@ export const buildUrl = (
  */
 export const getQuery = (): Record<string, string> => {
   if (typeof window === 'undefined') {
-    return {}
+    return {};
   }
 
-  const searchParams = new URLSearchParams(window.location.search)
-  const query: Record<string, string> = {}
+  const searchParams = new URLSearchParams(window.location.search);
+  const query: Record<string, string> = {};
 
   for (const [key, value] of searchParams) {
-    query[key] = value
+    query[key] = value;
   }
 
-  return query
-}
+  return query;
+};
 
 /**
  * 工具函数：将对象转换为查询参数字符串
@@ -53,15 +53,15 @@ export const getQuery = (): Record<string, string> => {
  * @returns 查询参数字符串
  */
 export function buildQueryString(params: Record<string, any>): string {
-  const filteredParams: Record<string, string> = {}
+  const filteredParams: Record<string, string> = {};
 
-  Object.keys(params).forEach((key) => {
+  Object.keys(params).forEach(key => {
     if (params[key] !== undefined && params[key] !== null) {
-      filteredParams[key] = String(params[key])
+      filteredParams[key] = String(params[key]);
     }
-  })
+  });
 
-  return new URLSearchParams(filteredParams).toString()
+  return new URLSearchParams(filteredParams).toString();
 }
 
 /**
@@ -70,23 +70,23 @@ export function buildQueryString(params: Record<string, any>): string {
  * @returns 参数对象
  */
 export function parseQueryString(queryString: string): Record<string, string> {
-  if (!queryString) return {}
+  if (!queryString) return {};
 
   // 移除开头的 '?' 字符
   const search = queryString.startsWith('?')
     ? queryString.substring(1)
-    : queryString
-  const params = new URLSearchParams(search)
-  const result: Record<string, string> = {}
+    : queryString;
+  const params = new URLSearchParams(search);
+  const result: Record<string, string> = {};
 
   for (const [key, value] of params) {
-    result[key] = value
+    result[key] = value;
   }
 
-  return result
+  return result;
 }
 
-export const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))
+export const sleep = (ms: number) => new Promise(r => setTimeout(r, ms));
 
 /**
  * 在服务端获取当前请求的查询参数
@@ -100,49 +100,49 @@ export const getServerQuery = async (
     | undefined
 ): Promise<Record<string, string>> => {
   // 确保 searchParams 已经 resolve
-  const params = await searchParams
+  const params = await searchParams;
 
   if (!params) {
-    return {}
+    return {};
   }
 
-  const query: Record<string, string> = {}
+  const query: Record<string, string> = {};
 
   for (const [key, value] of Object.entries(params)) {
     // 处理数组值，取第一个元素
     if (Array.isArray(value)) {
       if (value.length > 0) {
-        query[key] = value[0]
+        query[key] = value[0];
       }
     }
     // 处理字符串值
     else if (typeof value === 'string') {
-      query[key] = value
+      query[key] = value;
     }
   }
 
-  return query
-}
+  return query;
+};
 
 export const getBaseUrl = () => {
   if (process.env.NEXT_PUBLIC_APP_URL) {
-    return process.env.NEXT_PUBLIC_APP_URL
+    return process.env.NEXT_PUBLIC_APP_URL;
   }
 
   if (
     process.env.VERCEL_ENV === 'production' &&
     process.env.VERCEL_PROJECT_PRODUCTION_URL
   ) {
-    return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
   }
 
   if (process.env.VERCEL_URL) {
-    return `https://${process.env.VERCEL_URL}`
+    return `https://${process.env.VERCEL_URL}`;
   }
 
-  return 'http://localhost:3000'
-}
+  return 'http://localhost:3000';
+};
 
 export const isServer = () => {
-  return typeof window === 'undefined'
-}
+  return typeof window === 'undefined';
+};
