@@ -17,12 +17,12 @@ module.exports = {
         'ignore', // 忽略包含 'ignore' 的类
         'hairlines', // 忽略细边框处理相关类
         // 匹配 :global(.am-xxx) 或 :global .am-xxx
-        /:global\(\.am-/,
-        /:global\s+\.am-/,
+        // /:global\(\.am-/,
+        // /:global\s+\.am-/,
 
-        // 匹配 ::v-deep(.am-xxx) 或 :deep(.am-xxx)（兼容 deep 写法）
-        /::v-deep\(\.am-/,
-        /:deep\(\.am-/,
+        // // 匹配 ::v-deep(.am-xxx) 或 :deep(.am-xxx)（兼容 deep 写法）
+        // /::v-deep\(\.am-/,
+        // /:deep\(\.am-/,
 
         // 如果有其他第三方库前缀（如 .mt- 代表 mint-ui），可补充
         // /:global\(\.mt-/,
@@ -37,4 +37,4 @@ module.exports = {
       // landscapeWidth: 568 // 横屏时的视口宽度
     },
   },
-};
+}
