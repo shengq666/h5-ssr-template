@@ -20,7 +20,16 @@ const nextConfig: NextConfig = {
       {
         source: '/old-path',
         destination: '/new-path',
-        permanent: true,
+        permanent: true, // true 或 false - 如果为 true 将使用 308 状态码，指示客户端/搜索引擎永久缓存此重定向；如果为 false 则使用 307 临时状态码且不会被缓存
+      },
+    ]
+  },
+  // 开发环境代理配置
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*',
+        destination: 'http://localhost:3001/api/:path*', // 代理到后端服务器
       },
     ]
   },
