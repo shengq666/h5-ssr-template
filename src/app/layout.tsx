@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import ErrorBoundary from '@/components/ErrorBoundary'
 import GlobalErrorFallback from '@/components/GlobalErrorFallback'
-import Template from './template'
 import './globals.scss'
 
 export const metadata: Metadata = {
@@ -28,7 +27,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <ErrorBoundary FallbackComponent={GlobalErrorFallback}>
-          <Template>{children}</Template>
+          {children}
         </ErrorBoundary>
       </body>
     </html>

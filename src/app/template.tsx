@@ -10,5 +10,5 @@ export default function Template({
   children,
   className = '',
 }: PageWrapperProps) {
-  return <div className={`${styles.page} ${className}`}>{children}</div>
+  return <div className={`${styles.container} ${className}`}>{children}</div>
 }
