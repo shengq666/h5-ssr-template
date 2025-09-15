@@ -2,6 +2,7 @@ import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
   /* config options here */
+  output: 'standalone', // 添加这行以启用独立构建模式，优化Docker部署
   experimental: {
     // 如果需要使用App Router的实验性功能
     optimizePackageImports: ['antd-mobile', 'axios', 'lodash'],

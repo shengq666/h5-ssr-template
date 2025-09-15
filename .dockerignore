@@ -1,0 +1,26 @@
+# 依赖目录
+node_modules/
+
+# 构建相关
+.next/
+out/
+
+# 环境配置
+.env*
+!.env.example
+
+# Git 相关
+.git/
+.gitignore
+
+# 日志文件
+*.log
+
+# 编辑器配置
+.vscode/
+.idea/
+
+# 其他
+Dockerfile
+.dockerignore
+README.md
